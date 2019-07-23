@@ -1,21 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Footer, Screen, Tile } from "../components"
 
 export const CampListScreen = ({ navigation }) => {
+  const [camps, setCamps] = useState([])
+
   const goToSignIn = () => navigation.navigate("signIn")
   const goToDetails = (campId) => navigation.navigate("camp", { campId })
 
-  const camps = [
-    { id: 1, name: "Camp 1", imageUrl: "favicon.ico" },
-    { id: 1, name: "Camp 1", imageUrl: "favicon.ico" },
-    { id: 1, name: "Camp 1", imageUrl: "favicon.ico" },
-    { id: 1, name: "Camp 1", imageUrl: "favicon.ico" },
-    { id: 1, name: "Camp 1", imageUrl: "favicon.ico" },
-    { id: 1, name: "Camp 1", imageUrl: "favicon.ico" },
-    { id: 1, name: "Camp 1", imageUrl: "favicon.ico" },
-    { id: 1, name: "Camp 1", imageUrl: "favicon.ico" },
-    { id: 1, name: "Camp 1", imageUrl: "favicon.ico" },
-  ]
+  const fetchCamps = async () => {
+    const resp = await fetch("http://localhost:2403/camps")
+    const camps = await resp.json()
+    setCamps(camps)
+  }
+
+  useEffect(() => { fetchCamps() }, [])
 
   return (
     <Screen footer={
