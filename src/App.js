@@ -3,6 +3,9 @@ import { createBrowserApp } from "@react-navigation/web";
 import {
   CampDetailsScreen,
   CampListScreen,
+  CartScreen,
+  FeedScreen,
+  SettingsScreen,
   SignInScreen,
   SignUpScreen,
 } from "./screens"
@@ -13,6 +16,9 @@ const AppNavigator = createSwitchNavigator({
   camp: CampDetailsScreen,
   signIn: SignInScreen,
   signUp: SignUpScreen,
+  feed: FeedScreen,
+  cart: CartScreen,
+  settings: SettingsScreen,
 });
 
 const App = createBrowserApp(AppNavigator)

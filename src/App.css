@@ -54,6 +54,32 @@ main {
   background-color: rgb(16, 116, 116);
 }
 
+.NavBar {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: rgb(16, 116, 116);
+  width: 100%;
+}
+
+.NavBar nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.NavBarItem {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 10px 50px;
+  color: white;
+}
+
+.NavBarItem:hover {
+  background-color: #3B8686;
+  cursor: pointer;
+}
+
 .Tile {
   display: flex;
   flex: 1;
