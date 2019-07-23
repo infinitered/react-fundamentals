@@ -52,6 +52,7 @@ main {
 
 .Button:hover {
   background-color: rgb(16, 116, 116);
+  transition: all 0.3s;
 }
 
 .NavBar {
@@ -105,10 +106,20 @@ main {
   width: 33.33%;
 }
 
-.splash {
+.camp:hover {
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.3s;
+}
+
+.content {
   width: 60%;
-  height: 300px;
+}
+
+.splash {
+  height: 350px;
   background-size: cover;
+  background-position: 0% center;
 }
 
 input {
@@ -131,4 +142,9 @@ form {
 
 form input {
   width: 100%;
+}
+
+p {
+  line-height: 1.6;
+  text-align: left;
 }
