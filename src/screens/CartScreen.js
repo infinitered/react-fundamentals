@@ -1,16 +1,66 @@
-import React from 'react';
-import { Button, Footer, Screen, NavBar } from "../components"
+import React, { useContext } from "react"
+import { observer } from "mobx-react"
+import { Button, Footer, NavBar, Post, Screen } from "../components"
+import { AppContext } from "../App"
 
-export const CartScreen = () => {
+export const CartScreen = observer(({ navigation }) => {
+  const { cartItems, clearCart, removeCartItem, token, total } = useContext(AppContext)
+
+  const doPurchase = async () => {
+    const resp = await fetch("http://localhost:2403/purchases", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token
+      },
+      body: JSON.stringify({
+        purchasedPosts: cartItems
+      })
+    })
+
+    if (resp.ok) {
+      clearCart()
+      navigation.navigate("purchases")
+    } else {
+      alert("Unable to purchase.")
+    }
+  }
+
   return (
     <Screen
       footer={
         <Footer>
-          <Button>Purchase</Button>
+          {cartItems.length > 0 &&
+            <div className="row content">
+              <Button onClick={clearCart}>
+                Clear Cart
+              </Button>
+              <Button onClick={doPurchase}>
+                Purchase {cartItems.length} {cartItems.length === 1 ? "item" : "items"} for ${total}
+              </Button>
+            </div>
+          }
         </Footer>
       }>
       <NavBar />
-      Cart Items Go Here
+      <div className="posts content">
+        {cartItems.length === 0 &&
+          <p style={{ textAlign: "center" }}>
+            You have nothing in your cart
+          </p>
+        }
+        {cartItems.map(i => (
+          <Post
+            key={i.id}
+            quantity={i.quantity}
+            title={i.title}
+            imageUrl={i.imageUrl}
+            subtotal={`$${(Number(i.quantity) * Number(i.price)).toFixed(2)}`}
+            actionText="Remove"
+            onClick={() => removeCartItem(i)}
+          />
+        ))}
+      </div>
     </Screen>
-  );
-}
+  )
+})

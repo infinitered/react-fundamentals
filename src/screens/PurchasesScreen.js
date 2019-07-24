@@ -1,11 +1,47 @@
-import React from 'react';
-import { Screen, NavBar } from "../components"
+import React, { useContext, useEffect, useState } from "react"
+import { AppContext } from "../App"
+import { Button, Footer, NavBar, Screen, Tile } from "../components"
 
-export const PurchasesScreen = () => {
+export const PurchasesScreen = ({ navigation }) => {
+  const { token, reset } = useContext(AppContext)
+  const [purchases, setPurchases] = useState([])
+
+  const doSignOut = () => {
+    reset()
+    navigation.navigate("camps")
+  }
+
+  const fetchPurchases = async () => {
+    const resp = await fetch("http://localhost:2403/purchases", {
+      headers: {
+        Authorization: token
+      }
+    })
+
+    if (resp.ok) {
+      const json = await resp.json()
+      // to combine nested arrays into one purchases array
+      const flatPurchases = json.map(r => r.purchasedPosts).flat()
+      setPurchases(flatPurchases)
+    } else {
+      alert("Unable to fetch purchases.")
+    }
+  }
+
+  useEffect(() => { fetchPurchases() }, [])
+
   return (
-    <Screen>
+    <Screen footer={
+      <Footer>
+        <Button onClick={doSignOut}>Sign Out</Button>
+      </Footer>
+    }>
       <NavBar />
-      List some purchases here...
+      <div className="posts content">
+        {purchases.map(p => (
+          <Tile key={p.id} title={p.title} imageUrl={p.imageUrl} />
+        ))}
+      </div>
     </Screen>
   );
 }

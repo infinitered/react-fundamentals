@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { AppContext } from "../App"
 import { Button, Footer, Screen } from "../components"
 
 export const SignInScreen = ({ navigation }) => {
+  const { setToken } = useContext(AppContext)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
@@ -23,8 +25,8 @@ export const SignInScreen = ({ navigation }) => {
     })
 
     if (resp.ok) {
-      const { id } = await resp.json()
-      localStorage.setItem('sid', id)
+      const { uid } = await resp.json()
+      setToken(uid)
       navigation.navigate("feed")
     } else {
       alert("Incorrect credentials please try again.")

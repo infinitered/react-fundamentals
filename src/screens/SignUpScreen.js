@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AppContext } from "../App"
 import { Button, Footer, Screen } from "../components"
 
 export const SignUpScreen = ({ navigation }) => {
+  const { setToken } = useContext(AppContext)
   const campId = navigation.getParam("campId")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -41,8 +43,8 @@ export const SignUpScreen = ({ navigation }) => {
       })
 
       if (authResp.ok) {
-        const { id } = await authResp.json()
-        localStorage.setItem('sid', id)
+        const { uid } = await authResp.json()
+        setToken(uid)
         navigation.navigate("feed")
       } else {
         alert("Unable to authenticate.")

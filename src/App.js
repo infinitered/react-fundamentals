@@ -1,3 +1,4 @@
+import React from "react"
 import { createSwitchNavigator } from "@react-navigation/core";
 import { createBrowserApp } from "@react-navigation/web";
 import {
@@ -10,6 +11,9 @@ import {
   SignUpScreen,
 } from "./screens"
 import './App.css';
+import { store } from "./store"
+
+export const AppContext = React.createContext()
 
 const AppNavigator = createSwitchNavigator({
   camps: CampListScreen,
@@ -21,6 +25,14 @@ const AppNavigator = createSwitchNavigator({
   purchases: PurchasesScreen,
 });
 
-const App = createBrowserApp(AppNavigator)
+const AppContainer = createBrowserApp(AppNavigator)
+
+const App = () => {
+  return (
+    <AppContext.Provider value={store}>
+      <AppContainer />
+    </AppContext.Provider>
+  )
+}
 
 export default App;

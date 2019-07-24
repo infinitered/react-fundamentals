@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from "react"
+import { observer } from "mobx-react"
+import { AppContext } from "../App"
 import { Button, Modal, NavBar, Post, Screen } from "../components"
 
-export const FeedScreen = () => {
+export const FeedScreen = observer(() => {
+  const { addPostToCart, token } = useContext(AppContext)
   const [posts, setPosts] = useState([])
   const [selectedPost, setSelectedPost] = useState(null)
 
   const addSelectedPostToCart = () => {
-    // TODO: actually setup cart and add selected post
-    console.log(JSON.stringify(selectedPost))
+    addPostToCart(selectedPost)
     setSelectedPost(null)
   }
 
   const fetchPosts = async () => {
-    const sid = localStorage.getItem("sid")
     const resp = await fetch("http://localhost:2403/posts", {
-      headers: {
-        Accept: "application/json",
-        Cookie: `sid=${sid}`
-      }
+      headers: { Authorization: token }
     })
 
     if (resp.ok) {
@@ -42,7 +40,7 @@ export const FeedScreen = () => {
             quantity={p.quantity}
             price={p.price}
             actionText="Purchase"
-            onClick={() => setSelectedPost({ ...p, size: `4" x 6"`, quantity: 1 })}
+            onClick={() => setSelectedPost({ ...p, size: `4" x 6"`, quantity: "1" })}
           />
         ))}
       </div>
@@ -92,5 +90,5 @@ export const FeedScreen = () => {
         </Modal>
       }
     </Screen>
-  );
-}
+  )
+})
