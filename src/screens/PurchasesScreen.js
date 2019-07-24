@@ -1,7 +1,7 @@
 import React from 'react';
 import { Screen, NavBar } from "../components"
 
-export const SettingsScreen = () => {
+export const PurchasesScreen = () => {
   return (
     <Screen>
       <NavBar />

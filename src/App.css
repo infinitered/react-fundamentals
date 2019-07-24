@@ -55,7 +55,27 @@ main {
   transition: all 0.3s;
 }
 
+.Modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ModalContent {
+  background-color: white;
+  padding: 20px;
+  width: 500px;
+}
+
 .NavBar {
+  position: fixed;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -79,6 +99,28 @@ main {
 .NavBarItem:hover {
   background-color: #3B8686;
   cursor: pointer;
+}
+
+.Post {
+  padding: 20px;
+}
+
+.Post:hover {
+  background-color: white;
+}
+
+.PostImg {
+  background-size: cover;
+  height: 400px;
+  width: 100%;
+}
+
+.PostContent {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0;
 }
 
 .Tile {
@@ -116,6 +158,10 @@ main {
   width: 60%;
 }
 
+.posts {
+  margin: 80px 0;
+}
+
 .splash {
   height: 350px;
   background-size: cover;
@@ -147,4 +193,15 @@ form input {
 p {
   line-height: 1.6;
   text-align: left;
+}
+
+.purchase-modal-content img {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

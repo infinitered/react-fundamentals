@@ -60,7 +60,7 @@ export const SignUpScreen = ({ navigation }) => {
         </Button>
       </Footer>
     }>
-      <form>
+      <form onSubmit={(e) => { e.preventDefault(); doSignUp() }}>
         <input
           type="email"
           placeholder="Username"
@@ -85,6 +85,7 @@ export const SignUpScreen = ({ navigation }) => {
           onChange={(e) => setChildName(e.target.value)}
           value={childName}
         />
+        <input type="submit" hidden />
       </form>
     </Screen>
   );

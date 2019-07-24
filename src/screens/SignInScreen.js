@@ -39,7 +39,7 @@ export const SignInScreen = ({ navigation }) => {
         </Button>
       </Footer>
     }>
-      <form>
+      <form onSubmit={(e) => { e.preventDefault(); doSignIn() }}>
         <input
           type="email"
           placeholder="Username"
@@ -52,6 +52,7 @@ export const SignInScreen = ({ navigation }) => {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
+        <input type="submit" hidden />
       </form>
     </Screen>
   );

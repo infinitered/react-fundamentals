@@ -19,8 +19,8 @@ export const NavBar = withNavigation(({ navigation }) => {
         </div>
         <div
           className="NavBarItem"
-          onClick={() => goTo("settings")}>
-          Settings
+          onClick={() => goTo("purchases")}>
+          Purchases
         </div>
       </nav>
     </div>

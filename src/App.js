@@ -5,7 +5,7 @@ import {
   CampListScreen,
   CartScreen,
   FeedScreen,
-  SettingsScreen,
+  PurchasesScreen,
   SignInScreen,
   SignUpScreen,
 } from "./screens"
@@ -18,7 +18,7 @@ const AppNavigator = createSwitchNavigator({
   signUp: SignUpScreen,
   feed: FeedScreen,
   cart: CartScreen,
-  settings: SettingsScreen,
+  purchases: PurchasesScreen,
 });
 
 const App = createBrowserApp(AppNavigator)

@@ -25,7 +25,7 @@ export const CampListScreen = ({ navigation }) => {
     }>
       <div className="camps">
         {camps.map(c =>
-          <div className="camp" onClick={() => goToDetails(c.id)}>
+          <div key={c.id} className="camp" onClick={() => goToDetails(c.id)}>
             <Tile title={c.name} imageUrl={c.imageUrl} />
           </div>
         )}
