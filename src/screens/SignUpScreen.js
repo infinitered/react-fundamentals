@@ -18,9 +18,7 @@ export const SignUpScreen = ({ navigation }) => {
 
     const resp = await fetch("http://localhost:2403/parents", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username,
         password,
@@ -31,24 +29,9 @@ export const SignUpScreen = ({ navigation }) => {
     })
 
     if (resp.ok) {
-      const authResp = await fetch("http://localhost:2403/parents/login", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username,
-          password
-        })
-      })
-
-      if (authResp.ok) {
-        const { uid } = await authResp.json()
-        setToken(uid)
-        navigation.navigate("feed")
-      } else {
-        alert("Unable to authenticate.")
-      }
+      const { id } = await resp.json()
+      setToken(id)
+      navigation.navigate("feed")
     } else {
       alert("Unable to register.")
     }
