@@ -14,7 +14,7 @@ export const FeedScreen = observer(() => {
   }
 
   const fetchPosts = async () => {
-    const resp = await fetch("http://localhost:2403/posts", {
+    const resp = await fetch("https://campminder-training-api.herokuapp.com/posts", {
       headers: { Authorization: token }
     })
 

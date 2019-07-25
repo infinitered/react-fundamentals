@@ -7,7 +7,7 @@ export const CartScreen = observer(({ navigation }) => {
   const { cartItems, clearCart, removeCartItem, token, total } = useContext(AppContext)
 
   const doPurchase = async () => {
-    const resp = await fetch("http://localhost:2403/purchases", {
+    const resp = await fetch("https://campminder-training-api.herokuapp.com/purchases", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

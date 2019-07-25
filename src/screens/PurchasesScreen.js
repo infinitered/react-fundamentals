@@ -12,7 +12,7 @@ export const PurchasesScreen = ({ navigation }) => {
   }
 
   const fetchPurchases = async () => {
-    const resp = await fetch("http://localhost:2403/purchases", {
+    const resp = await fetch("https://campminder-training-api.herokuapp.com/purchases", {
       headers: {
         Authorization: token
       }

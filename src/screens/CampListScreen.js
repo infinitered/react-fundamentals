@@ -8,7 +8,7 @@ export const CampListScreen = ({ navigation }) => {
   const goToDetails = (campId) => navigation.navigate("camp", { campId })
 
   const fetchCamps = async () => {
-    const resp = await fetch("http://localhost:2403/camps")
+    const resp = await fetch("https://campminder-training-api.herokuapp.com/camps")
     const camps = await resp.json()
     setCamps(camps)
   }

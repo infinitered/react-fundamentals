@@ -16,7 +16,7 @@ export const SignUpScreen = ({ navigation }) => {
       return
     }
 
-    const resp = await fetch("http://localhost:2403/parents", {
+    const resp = await fetch("https://campminder-training-api.herokuapp.com/parents", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
