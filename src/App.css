@@ -97,3 +97,27 @@ p {
   line-height: 1.6;
   text-align: left;
 }
+
+form {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  flex: 1;
+}
+
+form input,
+form div {
+  position: relative;
+  width: 100%;
+}
+
+input {
+  background-color: white;
+  border-radius: 5px;
+  border-color: #ddd;
+  border-width: 1px;
+  margin-bottom: 16px;
+  padding: 10px;
+}
