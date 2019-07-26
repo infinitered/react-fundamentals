@@ -4,31 +4,30 @@ import { Button, Footer, NavBar, Screen, Tile } from "../components"
 
 export const PurchasesScreen = ({ navigation }) => {
   const { token, reset } = useContext(AppContext)
-  const [purchases, setPurchases] = useState([])
+  const [ purchases, setPurchases ] = useState([])
 
   const doSignOut = () => {
     reset()
     navigation.navigate("camps")
   }
 
-  const fetchPurchases = async () => {
-    const resp = await fetch("https://campminder-training-api.herokuapp.com/purchases", {
+  useEffect(() => {
+    fetch("https://campminder-training-api.herokuapp.com/purchases", {
       headers: {
         Authorization: token
       }
+    }).then(resp => {
+      if (resp.ok) {
+        resp.json().then(purchases => {
+          // to combine nested arrays into one purchases array
+          const flatPurchases = purchases.map(p => p.purchasedPosts).flat()
+          setPurchases(flatPurchases)
+        })
+      } else {
+        alert("Unable to fetch purchases.")
+      }
     })
-
-    if (resp.ok) {
-      const json = await resp.json()
-      // to combine nested arrays into one purchases array
-      const flatPurchases = json.map(r => r.purchasedPosts).flat()
-      setPurchases(flatPurchases)
-    } else {
-      alert("Unable to fetch purchases.")
-    }
-  }
-
-  useEffect(() => { fetchPurchases() }, [])
+  }, [ token ])
 
   return (
     <Screen footer={

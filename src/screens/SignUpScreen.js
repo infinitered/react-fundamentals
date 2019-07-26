@@ -3,12 +3,12 @@ import { AppContext } from "../App"
 import { Button, Footer, Screen } from "../components"
 
 export const SignUpScreen = ({ navigation }) => {
-  const { setToken } = useContext(AppContext)
   const campId = navigation.getParam("campId")
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [name, setName] = useState("")
-  const [childName, setChildName] = useState("")
+  const { setToken } = useContext(AppContext)
+  const [ username, setUsername ] = useState("")
+  const [ password, setPassword ] = useState("")
+  const [ name, setName ] = useState("")
+  const [ childName, setChildName ] = useState("")
 
   const doSignUp = async () => {
     if (!username.length || !password.length || !name.length || !childName.length) {

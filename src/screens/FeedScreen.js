@@ -5,28 +5,25 @@ import { Button, Modal, NavBar, Post, Screen } from "../components"
 
 export const FeedScreen = observer(() => {
   const { addPostToCart, token } = useContext(AppContext)
-  const [posts, setPosts] = useState([])
-  const [selectedPost, setSelectedPost] = useState(null)
+  const [ posts, setPosts ] = useState([])
+  const [ selectedPost, setSelectedPost ] = useState(null)
 
   const addSelectedPostToCart = () => {
     addPostToCart(selectedPost)
     setSelectedPost(null)
   }
 
-  const fetchPosts = async () => {
-    const resp = await fetch("https://campminder-training-api.herokuapp.com/posts", {
+  useEffect(() => {
+    fetch("https://campminder-training-api.herokuapp.com/posts", {
       headers: { Authorization: token }
+    }).then(resp => {
+      if (resp.ok) {
+        resp.json().then(posts => setPosts(posts || []))
+      } else {
+        alert("Unable to fetch posts.")
+      }
     })
-
-    if (resp.ok) {
-      const json = await resp.json()
-      setPosts(json)
-    } else {
-      alert("Unable to fetch posts.")
-    }
-  }
-
-  useEffect(() => { fetchPosts() }, [])
+  }, [token])
 
   return (
     <Screen>

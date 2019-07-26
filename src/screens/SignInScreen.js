@@ -4,8 +4,8 @@ import { Button, Footer, Screen } from "../components"
 
 export const SignInScreen = ({ navigation }) => {
   const { setToken } = useContext(AppContext)
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [ username, setUsername ] = useState("")
+  const [ password, setPassword ] = useState("")
   const passwordInput = useRef(null)
 
   const togglePasswordInput = (e) => {

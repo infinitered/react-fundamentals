@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Footer, Screen, Tile } from "../components"
 
 export const CampListScreen = ({ navigation }) => {
-  const [camps, setCamps] = useState([])
+  const [ camps, setCamps ] = useState([])
 
   const goToSignIn = () => navigation.navigate("signIn")
   const goToDetails = (campId) => navigation.navigate("camp", { campId })

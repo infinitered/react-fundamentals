@@ -2,21 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Button, Footer, Screen } from "../components"
 
 export const CampDetailsScreen = ({ navigation }) => {
-  const [camp, setCamp] = useState(null)
+  const campId = navigation.getParam("campId")
+  const [ camp, setCamp ] = useState(null)
 
   const goToSignUp = () => {
-    const campId = navigation.getParam("campId")
     navigation.navigate("signUp", { campId })
   }
 
-  const fetchCamp = async () => {
-    const campId = navigation.getParam("campId")
-    const resp = await fetch(`https://campminder-training-api.herokuapp.com/camps/${campId}`)
-    const camp = await resp.json()
-    setCamp(camp)
-  }
-
-  useEffect(() => { fetchCamp() }, [])
+  useEffect(() => {
+    fetch(`https://campminder-training-api.herokuapp.com/camps/${campId}`)
+      .then(resp => resp.json())
+      .then(camp => setCamp(camp))
+  }, [ campId ])
 
   return (
     <Screen footer={
