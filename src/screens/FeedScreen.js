@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { Post, Screen } from "../components"
+import { NavBar, Post, Screen } from "../components"
 
 export const FeedScreen = ({ navigation }) => {
   const token = localStorage.getItem("token")
   const [ posts, setPosts ] = useState([])
-
-  const goTo = navigation.navigate
 
   useEffect(() => {
     fetch("https://campminder-training-api.herokuapp.com/posts", {
@@ -21,26 +19,8 @@ export const FeedScreen = ({ navigation }) => {
 
   return (
     <Screen>
-      <div className="NavBar">
-        <nav>
-          <div
-            className="NavBarItem"
-            onClick={() => goTo("feed")}>
-            Feed
-          </div>
-          <div
-            className="NavBarItem"
-            onClick={() => goTo("cart")}>
-            Cart
-          </div>
-          <div
-            className="NavBarItem"
-            onClick={() => goTo("purchases")}>
-            Purchases
-          </div>
-        </nav>
-      </div>
-      <div className="posts content">
+      <NavBar />
+      <div className="content underNav">
         {posts.map(p => (
           <Post
             key={p.id}

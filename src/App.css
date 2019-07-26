@@ -73,6 +73,10 @@ main {
   width: 60%;
 }
 
+.underNav {
+  margin: 80px 0 120px;
+}
+
 .camps {
   display: flex;
   flex-direction: row;

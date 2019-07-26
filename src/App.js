@@ -1,16 +1,15 @@
-import React from "react"
 import { createSwitchNavigator } from "@react-navigation/core"
 import { createBrowserApp } from "@react-navigation/web"
 import {
   CampDetailsScreen,
   CampListScreen,
+  CartScreen,
   FeedScreen,
+  PurchasesScreen,
   SignInScreen,
   SignUpScreen,
 } from "./screens"
 import "./App.css"
-
-const createPlaceholderScreen = text => () => <h1>{text} placeholder</h1>
 
 const AppNavigator = createSwitchNavigator({
   camps: CampListScreen,
@@ -18,8 +17,8 @@ const AppNavigator = createSwitchNavigator({
   signIn: SignInScreen,
   signUp: SignUpScreen,
   feed: FeedScreen,
-  cart: createPlaceholderScreen("cart"),
-  purchases: createPlaceholderScreen("purchases"),
+  cart: CartScreen,
+  purchases: PurchasesScreen,
 })
 
 export default createBrowserApp(AppNavigator)
