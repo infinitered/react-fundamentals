@@ -1,5 +1,5 @@
 import React from "react"
-import { withNavigation } from "@react-navigation/core";
+import { withNavigation } from "@react-navigation/core"
 
 export const NavBar = withNavigation(({ navigation }) => {
   const goTo = navigation.navigate
