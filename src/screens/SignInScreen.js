@@ -1,9 +1,16 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { Button, Footer, Screen } from "../components"
 
 export const SignInScreen = ({ navigation }) => {
   const [ username, setUsername ] = useState("")
   const [ password, setPassword ] = useState("")
+  const passwordInput = useRef(null)
+
+  const togglePasswordInput = (e) => {
+    e.preventDefault()
+    const { type } = passwordInput.current
+    passwordInput.current.type = type === "password" ? "text" : "password"
+  }
 
   const doSignIn = async () => {
     if (!username.length || !password.length) {
@@ -45,12 +52,16 @@ export const SignInScreen = ({ navigation }) => {
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
+        <div className="passwordInput">
+          <input
+            ref={passwordInput}
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+          <button onClick={togglePasswordInput}>Toggle</button>
+        </div>
         <input type="submit" hidden />
       </form>
     </Screen>
