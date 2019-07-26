@@ -6,6 +6,11 @@ export const FeedScreen = ({ navigation }) => {
   const [ posts, setPosts ] = useState([])
   const [ selectedPost, setSelectedPost ] = useState(null)
 
+  const addPostToCart = () => {
+    localStorage.setItem("cartItems", JSON.stringify([ selectedPost ]))
+    setSelectedPost(null)
+  }
+
   useEffect(() => {
     fetch("https://campminder-training-api.herokuapp.com/posts", {
       headers: { Authorization: token }
@@ -73,7 +78,7 @@ export const FeedScreen = ({ navigation }) => {
                 </div>
               </div>
               <div className="row">
-                <Button onClick={() => alert("add to cart")}>Add to cart</Button>
+                <Button onClick={addPostToCart}>Add to cart</Button>
               </div>
             </div>
           </Modal>
