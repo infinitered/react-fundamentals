@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-  const camps = [
-    { id: 1, name: "Cage 1", image: "https://www.placecage.com/460/460" },
-    { id: 2, name: "Cage 2", image: "https://www.placecage.com/450/450" },
-    { id: 3, name: "Cage 3", image: "https://www.placecage.com/440/440" },
-    { id: 4, name: "Cage 4", image: "https://www.placecage.com/430/430" },
-    { id: 5, name: "Cage 5", image: "https://www.placecage.com/420/420" },
-    { id: 6, name: "Cage 6", image: "https://www.placecage.com/410/410" },
-  ]
+  const [ camps, setCamps ] = useState([])
 
-  const handleClick = () => alert("handle this")
+  const goToDetails = () => alert('goToDetails')
+  const goToSignIn = () => alert('goToSignIn')
+
+  useEffect(() => {
+    fetch('https://campminder-training-api.herokuapp.com/camps')
+      .then(resp => resp.json())
+      .then(camps => setCamps(camps))
+  }, [])
 
   return (
     <div className="App">
@@ -21,9 +21,9 @@ function App() {
       <main>
         <div className="content camps">
           {camps.map(camp => (
-            <div key={camp.id} className="camp" onClick={handleClick}>
+            <div key={camp.id} className="camp" onClick={goToDetails}>
               <div className="Tile">
-                <img src={camp.image} alt={camp.name} />
+                <img src={camp.imageUrl} alt={camp.name} />
                 {camp.name}
               </div>
             </div>
@@ -31,7 +31,7 @@ function App() {
         </div>
       </main>
       <footer className="Footer">
-        <button className="Button" onClick={handleClick}>
+        <button className="Button" onClick={goToSignIn}>
           I'm already registered
         </button>
       </footer>
