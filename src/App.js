@@ -5,6 +5,7 @@ import {
   CampDetailsScreen,
   CampListScreen,
   SignInScreen,
+  SignUpScreen,
 } from "./screens"
 import "./App.css"
 
@@ -14,7 +15,7 @@ const AppNavigator = createSwitchNavigator({
   camps: CampListScreen,
   camp: CampDetailsScreen,
   signIn: SignInScreen,
-  signUp: createPlaceholderScreen("signUp"),
+  signUp: SignUpScreen,
   feed: createPlaceholderScreen("feed"),
   cart: createPlaceholderScreen("cart"),
   purchases: createPlaceholderScreen("purchases"),
