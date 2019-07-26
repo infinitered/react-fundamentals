@@ -1,6 +1,6 @@
 import React from "react"
-import { createSwitchNavigator } from "@react-navigation/core";
-import { createBrowserApp } from "@react-navigation/web";
+import { createSwitchNavigator } from "@react-navigation/core"
+import { createBrowserApp } from "@react-navigation/web"
 import {
   CampDetailsScreen,
   CampListScreen,
