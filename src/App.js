@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { createSwitchNavigator } from "@react-navigation/core"
+import { createBrowserApp } from "@react-navigation/web"
 import './App.css'
 
-function CampListScreen() {
+function CampListScreen({ navigation }) {
   const [ camps, setCamps ] = useState([])
 
-  const goToDetails = () => alert('goToDetails')
-  const goToSignIn = () => alert('goToSignIn')
+  const goToDetails = (campId) => navigation.navigate('camp', { campId })
+  const goToSignIn = () => navigation.navigate('signIn')
 
   useEffect(() => {
     fetch('https://campminder-training-api.herokuapp.com/camps')
@@ -21,7 +23,7 @@ function CampListScreen() {
       <main>
         <div className="content camps">
           {camps.map(camp => (
-            <div key={camp.id} className="camp" onClick={goToDetails}>
+            <div key={camp.id} className="camp" onClick={() => goToDetails(camp.id)}>
               <div className="Tile">
                 <img src={camp.imageUrl} alt={camp.name} />
                 {camp.name}
@@ -39,11 +41,11 @@ function CampListScreen() {
   )
 }
 
-function CampDetailsScreen() {
-  const campId = '114ca9b270633a36'
+function CampDetailsScreen({ navigation }) {
+  const campId = navigation.getParam('campId')
   const [ camp, setCamp ] = useState(null)
 
-  const goToSignUp = () => alert("goToSignUp")
+  const goToSignUp = () => navigation.navigate('signUp')
 
   useEffect(() => {
     fetch(`https://campminder-training-api.herokuapp.com/camps/${campId}`)
@@ -75,5 +77,13 @@ function CampDetailsScreen() {
   )
 }
 
+const createPlaceholderScreen = text => () => <h1>{text} placeholder</h1>
 
-export default CampDetailsScreen
+const AppNavigator = createSwitchNavigator({
+  camps: CampListScreen,
+  camp: CampDetailsScreen,
+  signIn: createPlaceholderScreen('signIn'),
+  signUp: createPlaceholderScreen('signUp'),
+})
+
+export default createBrowserApp(AppNavigator)
