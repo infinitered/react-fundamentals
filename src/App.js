@@ -4,6 +4,7 @@ import { createBrowserApp } from "@react-navigation/web"
 import {
   CampDetailsScreen,
   CampListScreen,
+  FeedScreen,
   SignInScreen,
   SignUpScreen,
 } from "./screens"
@@ -16,7 +17,7 @@ const AppNavigator = createSwitchNavigator({
   camp: CampDetailsScreen,
   signIn: SignInScreen,
   signUp: SignUpScreen,
-  feed: createPlaceholderScreen("feed"),
+  feed: FeedScreen,
   cart: createPlaceholderScreen("cart"),
   purchases: createPlaceholderScreen("purchases"),
 })

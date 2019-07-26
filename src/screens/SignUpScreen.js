@@ -27,7 +27,8 @@ export const SignUpScreen = ({ navigation }) => {
     })
 
     if (resp.ok) {
-      // TODO: do something with token
+      const { id } = resp.json()
+      localStorage.setItem("token", id)
       navigation.navigate("feed")
     } else {
       alert("Unable to register.")

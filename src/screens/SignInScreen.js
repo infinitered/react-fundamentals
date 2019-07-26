@@ -30,7 +30,8 @@ export const SignInScreen = ({ navigation }) => {
     })
 
     if (resp.ok) {
-      // TODO: Do something with token
+      const { uid } = resp.json()
+      localStorage.setItem("token", uid)
       navigation.navigate("feed")
     } else {
       alert("Incorrect credentials please try again.")

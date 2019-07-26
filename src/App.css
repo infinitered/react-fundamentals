@@ -133,3 +133,52 @@ input {
   border: none;
   background: none;
 }
+
+.NavBar {
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: rgb(16, 116, 116);
+  width: 100%;
+}
+
+.NavBar nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.NavBarItem {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 10px 50px;
+  color: white;
+}
+
+.NavBarItem:hover {
+  background-color: #3B8686;
+  cursor: pointer;
+}
+
+.Post {
+  padding: 20px;
+}
+
+.Post:hover {
+  background-color: white;
+}
+
+.PostImg {
+  background-size: cover;
+  height: 400px;
+  width: 100%;
+}
+
+.PostContent {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0;
+}
