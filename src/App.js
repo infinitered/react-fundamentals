@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 
-function App() {
+function CampListScreen() {
   const [ camps, setCamps ] = useState([])
 
   const goToDetails = () => alert('goToDetails')
@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <header className="Header">
-        <h1>CageMinder</h1>
+        <h1>CampMinder</h1>
       </header>
       <main>
         <div className="content camps">
@@ -39,4 +39,41 @@ function App() {
   )
 }
 
-export default App
+function CampDetailsScreen() {
+  const campId = '114ca9b270633a36'
+  const [ camp, setCamp ] = useState(null)
+
+  const goToSignUp = () => alert("goToSignUp")
+
+  useEffect(() => {
+    fetch(`https://campminder-training-api.herokuapp.com/camps/${campId}`)
+      .then(resp => resp.json())
+      .then(camp => setCamp(camp))
+  }, [ campId ])
+
+  return (
+    <div className="App">
+      <header className="Header">
+        <h1>CampMinder</h1>
+      </header>
+      <main>
+        {camp
+          ? <div className="content">
+              <div className="splash" style={{ backgroundImage: `url(${camp.imageUrl})` }} />
+              <h2>{camp.name}</h2>
+              <p>{camp.description}</p>
+            </div>
+          : <p>Loading...</p>
+        }
+      </main>
+      <footer className="Footer">
+        <button className="Button" onClick={goToSignUp}>
+          Register for this camp
+        </button>
+      </footer>
+    </div>
+  )
+}
+
+
+export default CampDetailsScreen

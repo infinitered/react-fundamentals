@@ -86,3 +86,14 @@ main {
   background-color: #fff;
   transition: all 0.3s;
 }
+
+.splash {
+  height: 350px;
+  background-size: cover;
+  background-position: 0% center;
+}
+
+p {
+  line-height: 1.6;
+  text-align: left;
+}
