@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Button, Modal, NavBar, Post, Screen } from "../components"
+import { StoreContext } from "../App"
 
 export const FeedScreen = ({ navigation }) => {
   const token = localStorage.getItem("token")
   const [ posts, setPosts ] = useState([])
   const [ selectedPost, setSelectedPost ] = useState(null)
+  const { addPostToCart } = useContext(StoreContext)
 
-  const addPostToCart = () => {
-    localStorage.setItem("cartItems", JSON.stringify([ selectedPost ]))
+  const addSelectedPostToCart = () => {
+    addPostToCart(selectedPost)
     setSelectedPost(null)
   }
 
@@ -78,7 +80,7 @@ export const FeedScreen = ({ navigation }) => {
                 </div>
               </div>
               <div className="row">
-                <Button onClick={addPostToCart}>Add to cart</Button>
+                <Button onClick={addSelectedPostToCart}>Add to cart</Button>
               </div>
             </div>
           </Modal>

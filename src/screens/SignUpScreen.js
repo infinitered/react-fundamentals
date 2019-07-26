@@ -1,5 +1,6 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { Button, Footer, Screen } from "../components"
+import { StoreContext } from "../App"
 
 export const SignUpScreen = ({ navigation }) => {
   const campId = navigation.getParam("campId")
@@ -7,6 +8,7 @@ export const SignUpScreen = ({ navigation }) => {
   const [ password, setPassword ] = useState("")
   const [ name, setName ] = useState("")
   const [ childName, setChildName ] = useState("")
+  const { setToken } = useContext(StoreContext)
 
   const doSignUp = async () => {
     if (!username.length || !password.length || !name.length || !childName.length) {
@@ -28,7 +30,7 @@ export const SignUpScreen = ({ navigation }) => {
 
     if (resp.ok) {
       const { id } = resp.json()
-      localStorage.setItem("token", id)
+      setToken(id)
       navigation.navigate("feed")
     } else {
       alert("Unable to register.")

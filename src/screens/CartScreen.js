@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
 import { NavBar, Post, Screen } from "../components"
+import { StoreContext } from "../App"
 
 export const CartScreen = () => {
-  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || []
+  const { cartItems } = useContext(StoreContext)
 
   return (
     <Screen>
